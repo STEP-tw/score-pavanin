@@ -3,6 +3,7 @@ const Game=function(topLeft,bottomRight) {
   this.bottomRight=bottomRight;
   this.snake={};
   this.food={};
+  this.score=0;
 }
 
 Game.prototype.addSnake=function(snake) {
@@ -44,9 +45,7 @@ Game.prototype.hasSnakeEatenFood=function() {
 }
 
 Game.prototype.createFood=function() {
-  console.log(this.bottomRight);
   let position=generateRandomPosition(this.bottomRight.x,this.bottomRight.y);
-
   let random=generateRandomNumberBetween(0,10);
   let growthFactor=1;
   let superFood=false;
@@ -56,7 +55,9 @@ Game.prototype.createFood=function() {
   }
   this.food=new Food(position,growthFactor,superFood);
 }
-Game.prototype.updateScore= function(){
-  score=getScore();
-  document.getElementById("score").innerText=score;
+Game.prototype.updateScore= function(score){
+  this.score+=score;
+}
+Game.prototype.getScore=function(){
+  return this.score;
 }

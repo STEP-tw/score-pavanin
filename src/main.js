@@ -5,13 +5,15 @@ let numberOfCols=120;
 
 let animator=undefined;
 
+
 const animateSnake=function() {
   let details=game.move();
   paintBody(details.oldHead);
   unpaintSnake(details.oldTail);
   paintHead(details.head);
+  showScore(game.getScore());
   if(game.hasSnakeEatenFood()) {
-    game.updateScore();
+    game.updateScore(10);
     game.grow();
     game.createFood();
     drawFood(game.getFood())
